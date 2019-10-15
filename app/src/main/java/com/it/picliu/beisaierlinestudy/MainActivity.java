@@ -2,8 +2,10 @@ package com.it.picliu.beisaierlinestudy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,14 +18,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initview() {
-        FrameLayout framelayout = findViewById(R.id.framelayout);
-        MyBeisaierLIneView myBeisaierLIneView = new MyBeisaierLIneView(this);
-        framelayout.addView(myBeisaierLIneView);
-
-        MyBeiSaierLineViewTwoPoint myBeiSaierLineViewTwoPoint = new MyBeiSaierLineViewTwoPoint(this);
-        framelayout.addView(myBeiSaierLineViewTwoPoint);
-
-        MyBeisaierLineRect myBeisaierLineRect = new MyBeisaierLineRect(this);
-        framelayout.addView(myBeisaierLineRect);
+        Button jump = findViewById(R.id.jump);
+        jump.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WaveActivity.class);
+                startActivity(intent);
+                return false;
+            }
+        });
     }
 }

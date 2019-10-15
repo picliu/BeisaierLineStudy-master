@@ -7,8 +7,11 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.PointF;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 /**
  * *  @name:picliu
@@ -16,20 +19,26 @@ import android.view.View;
  */
 public class MyBeisaierLineRect extends View {
 
-    private final Point leftTopPoint;
-    private final Point rightTopPoint;
-    private final Point leftBottomPoint;
-    private final Point rightBottomPoint;
-    private final PointF controPoint;
-    private final Paint mPaint;
+    private Point leftTopPoint;
+    private Point rightTopPoint;
+    private Point leftBottomPoint;
+    private Point rightBottomPoint;
+    private PointF controPoint;
+    private Paint mPaint;
     private int x;
     private int y;
     private int centerX;
     private int centerY;
 
+    public MyBeisaierLineRect(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+    }
+
     public MyBeisaierLineRect(Context context) {
         super(context);
+    }
 
+    private void initConfig() {
         mPaint = new Paint();
         mPaint.setColor(Color.BLACK);
         mPaint.setStrokeWidth(8);
@@ -40,15 +49,14 @@ public class MyBeisaierLineRect extends View {
         rightBottomPoint = new Point(0, 0);
 
         controPoint = new PointF(0, 0);
-
-
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        initConfig();
         centerX = w / 2;
-        centerY = h / 2 - 400;
+        centerY = h / 2 ;
 
         leftTopPoint.x = centerX - 100;
         leftTopPoint.y = centerY;
@@ -78,7 +86,7 @@ public class MyBeisaierLineRect extends View {
             controPoint.y = rightBottomPoint.y - Math.abs(leftTopPoint.y - rightBottomPoint.y) / 2;
         }
 
-        switch (event.getAction()){
+        switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
                 resertPoint(rightBottomPoint, centerX - 100, rightTopPoint, centerY);
                 break;
@@ -94,7 +102,7 @@ public class MyBeisaierLineRect extends View {
         rightTopPoint.x = i;
         rightTopPoint.y = centerY;
 
-        controPoint.x =i;
+        controPoint.x = i;
         controPoint.y = centerY + 50;
     }
 

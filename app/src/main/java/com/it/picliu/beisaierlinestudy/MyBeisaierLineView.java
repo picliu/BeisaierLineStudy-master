@@ -7,23 +7,33 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.PointF;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 /**
  * *  @name:picliu
  * *  @date: 2019-10-10
  */
-public class MyBeisaierLIneView extends View {
+public class MyBeisaierLineView extends View {
 
-    private final Paint mPaint;
-    private final Point startPoint;
-    private final Point endPoint;
+    private Paint mPaint;
+    private Point startPoint;
+    private Point endPoint;
     private int centerX, centerY;
-    private final PointF controlPointF;
+    private PointF controlPointF;
 
-    public MyBeisaierLIneView(Context context) {
+    public MyBeisaierLineView(Context context) {
         super(context);
+    }
+
+    public MyBeisaierLineView(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    private void initConfig() {
         mPaint = new Paint();
         mPaint.setColor(Color.BLACK);
         mPaint.setStrokeWidth(8);
@@ -32,7 +42,6 @@ public class MyBeisaierLIneView extends View {
         startPoint = new Point(0, 0);
         endPoint = new Point(0, 0);
         controlPointF = new PointF(0, 0);
-
     }
 
     @Override
@@ -66,6 +75,8 @@ public class MyBeisaierLIneView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        initConfig();
+
         centerX = w / 2;
         centerY = h / 2;
 
@@ -75,7 +86,7 @@ public class MyBeisaierLIneView extends View {
         endPoint.x = centerX + 200;
         endPoint.y = centerY;
         controlPointF.x = centerX;
-        controlPointF.y = centerY ;
+        controlPointF.y = centerY;
     }
 
     @Override

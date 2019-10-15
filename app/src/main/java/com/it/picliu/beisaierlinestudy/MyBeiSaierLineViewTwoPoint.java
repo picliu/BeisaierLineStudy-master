@@ -7,8 +7,11 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.PointF;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 /**
  * *  @name:picliu
@@ -16,16 +19,23 @@ import android.view.View;
  */
 public class MyBeiSaierLineViewTwoPoint extends View {
 
-    private final Point startPoint;
-    private final Point endPoint;
-    private final PointF contorPoint1;
-    private final PointF contorPoint2;
+    private Point startPoint;
+    private Point endPoint;
+    private PointF contorPoint1;
+    private PointF contorPoint2;
     private int centerX;
     private int centerY;
-    private final Paint mPaint;
+    private Paint mPaint;
 
     public MyBeiSaierLineViewTwoPoint(Context context) {
         super(context);
+    }
+
+    public MyBeiSaierLineViewTwoPoint(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    private void initConfig() {
         mPaint = new Paint();
         mPaint.setColor(Color.BLACK);
         mPaint.setStrokeWidth(8);
@@ -36,15 +46,14 @@ public class MyBeiSaierLineViewTwoPoint extends View {
 
         contorPoint1 = new PointF(0, 0);
         contorPoint2 = new PointF(0, 0);
-
-
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        initConfig();
         centerX = w / 2;
-        centerY = h / 2 + 400;
+        centerY = h / 2 ;
 
         startPoint.x = centerX - 250;
         startPoint.y = centerY;
@@ -53,10 +62,10 @@ public class MyBeiSaierLineViewTwoPoint extends View {
         endPoint.y = centerY;
 
         contorPoint1.x = centerX - 125;
-        contorPoint1.y = centerY-200;
+        contorPoint1.y = centerY - 200;
 
         contorPoint2.x = centerX + 125;
-        contorPoint2.y = centerY+200;
+        contorPoint2.y = centerY + 200;
     }
 
     @Override

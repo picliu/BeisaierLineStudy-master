@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MyWaveView">
+        <!--        波纹颜色-->
+        <attr name="waveColor" format="color" />
+        <!--        波长-->
+        <attr name="waveLength" format="dimension" />
+        <!--        波峰高度-->
+        <attr name="waveHeight" format="dimension" />
+        <!--        水位初始位置-->
+        <attr name="originY" format="dimension" />
+        <!--        水涨的位置-->
+        <attr name="duration" format="float" />
+        <!--        水位上升速度-->
+        <attr name="speed" format="float" />
+    </declare-styleable>
+</resources>
